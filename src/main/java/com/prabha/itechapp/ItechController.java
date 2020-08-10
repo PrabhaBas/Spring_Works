@@ -1,5 +1,6 @@
 package com.prabha.itechapp;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,7 +31,7 @@ public class ItechController {
     }
 
     // Content-type application/json
-    @RequestMapping(value = "/testing-json")
+    @RequestMapping(value = "/testing")
     public Map testing(){
         Map<String,Object> map=new HashMap<>();
         map.put("Name","Prabhavathi");
@@ -40,10 +41,34 @@ public class ItechController {
         map.put("Pincode",613004);
         return map;
     }
+    // Content-Type application/json
+    @RequestMapping(value = "/get")
+    public Map getPrabha()
+    {
+        Address address=new Address();
+        address.city = "Thanjavur";
+        address.state = "tamil nadu";
+        address.pincode = 613004;
+        Map<String ,Object> map=new HashMap<>();
+        map.put("Id",01);
+        map.put("Name","Prabhavathi");
+        map.put("Age",20);
+        map.put("Address",address);
+        return map;
+    }
+
+    // Just try
+    @RequestMapping(value = "/try")
+    public Hello hello()
+    {
+        /** Hello h=new Hello("Prabha");
+        return h; **/
+    return new Hello("Prabhavathi");
+    }
 
     // Content-Type application/json
-    @RequestMapping(value = "/prabha")
-    public Person getVicky() {
+    @RequestMapping(value = "/detail")
+    public Person getPerson() {
         Address address = new Address();
         address.city = "Thanjavur";
         address.state = "tamil nadu";
@@ -62,4 +87,13 @@ public class ItechController {
 
         return person;
     }
+
+    // path variable
+    @RequestMapping(value = "/path/{name}")
+    public String path(@PathVariable String name)
+    {
+        return name;
+    }
+
+
 }
